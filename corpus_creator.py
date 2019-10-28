@@ -27,10 +27,12 @@ class CorporaCreator:
         for artist in music:
             songs += artist.get_song_list()
 
+        written = 0
         print('Writing to csv...')
         for song in songs:
             lyrics = song.get_lyrics()
-            if lyrics is not None or lyrics is not '':
+            if lyrics is not None or lyrics is not '' or lyrics is not 'Instrumental':
                 csv_writer.writerow([song.title, song.artist.name, lyrics, genre])
+                written += 1
 
-        return len(songs)
+        return written

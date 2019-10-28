@@ -195,6 +195,8 @@ def get_lyrics(song):
     artist = song.artist
     title = song.title
     artist_name = artist.name
+    if artist is None or title is None:
+        return ''
     url = SEARCH_URL.format(artist_name.replace(" ", "+"), title.replace(" ", "+"))
     page = requests.get(url)
     soup = BeautifulSoup(page.text, 'html.parser')
